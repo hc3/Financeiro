@@ -8,6 +8,7 @@ package br.com.financeiro.bean;
 
 import br.com.financeiro.pojo.Usuario;
 import br.com.financeiro.rn.UsuarioRN;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -20,6 +21,7 @@ import javax.faces.context.FacesContext;
  * @date 
  * @author Eliel
  * @email eliel.floyd@bol.com.br
+ * this class makes interation between viewer and business rules
  *
  */
 @ManagedBean(name="usuarioBean")
@@ -28,7 +30,9 @@ public class UsuarioBean {
    
    private Usuario usuario = new Usuario();
    private String confirmaSenha;
-
+   private List<Usuario> lista;
+   private String destinoSalvar;
+   
     public Usuario getUsuario() {
         return usuario;
     }
@@ -44,11 +48,27 @@ public class UsuarioBean {
     public void setConfirmaSenha(String confirmaSenha) {
         this.confirmaSenha = confirmaSenha;
     }
+
+    public String getDestinoSalvar() {
+        return destinoSalvar;
+    }
+
+    public void setDestinoSalvar(String destinoSalvar) {
+        this.destinoSalvar = destinoSalvar;
+    }
+    
+    
     
     public String novo(){
+        this.destinoSalvar = "usuarioSucesso";
         this.usuario = new Usuario();
         this.usuario.setAtivo(true);
         return "usuario";
+    }
+    
+    public String editar(){
+        this.confirmaSenha = this.usuario.getSenha();
+        return "/publico/usuario";
     }
     
     public String salvar() {
@@ -64,8 +84,35 @@ public class UsuarioBean {
         UsuarioRN usuarioRN = new UsuarioRN();
         usuarioRN.salvar(this.usuario);
        
-        return "usuarioSucesso";
+        return this.destinoSalvar;
+    }
+    
+    public String excluir(){
+        UsuarioRN usuarioRN = new UsuarioRN();
+        usuarioRN.excluir(usuario);
+        this.lista = null;
+        return null;
+    }
+    
+    public String ativar(){
+        if(this.usuario.isAtivo()){
+            this.usuario.setAtivo(false);
+        }else{
+            this.usuario.setAtivo(true);
+        }
+        UsuarioRN usuarioRN = new UsuarioRN();
+        usuarioRN.salvar(usuario);
+        return null;
+    }
+    
+    public List<Usuario> getLista(){
+        if(this.lista == null) {
+            UsuarioRN usuarioRN = new UsuarioRN();
+            this.lista = usuarioRN.listar();
+        }
+        return this.lista;
     }
   
+    
    
 }

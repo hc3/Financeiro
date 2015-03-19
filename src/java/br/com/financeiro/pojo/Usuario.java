@@ -21,7 +21,7 @@ import org.hibernate.annotations.NaturalId;
  * @date 
  * @author Eliel
  * @email eliel.floyd@bol.com.br
- *
+ *  
  */
 @Entity
 public class Usuario implements Serializable {

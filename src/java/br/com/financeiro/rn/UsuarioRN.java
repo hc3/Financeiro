@@ -17,8 +17,10 @@ import java.util.List;
  * @date 
  * @author Eliel
  * @email eliel.floyd@bol.com.br
+ * this class performs all methods the UsuarioDAO
  *
  */
+
 
 public class UsuarioRN {
 

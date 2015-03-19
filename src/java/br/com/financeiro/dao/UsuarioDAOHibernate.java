@@ -17,6 +17,7 @@ import org.hibernate.Session;
  * @date 
  * @author Eliel
  * @email eliel.floyd@bol.com.br
+ * class responsible for abstract the interface UsuarioDAO
  *
  */
 
@@ -58,7 +59,7 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 
     @Override
     public List<Usuario> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.session.createCriteria(Usuario.class).list();
     }
     
 }
