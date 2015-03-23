@@ -25,10 +25,12 @@
         <filter-name>conexaoFilter</filter-name>
         <filter-class>br.com.financeiro.dao.ConexaoHibernateFilter</filter-class>
     </filter>
+    
     <filter-mapping>
         <filter-name>conexaoFilter</filter-name>
         <url-pattern>*.jsf</url-pattern>
     </filter-mapping>
+    
     <resource-ref>
         <description>DataSource FinanceiroDB</description>
         <res-ref-name>jdbc/FinanceiroDB</res-ref-name>
