@@ -9,6 +9,7 @@ package br.com.financeiro.bean;
 import br.com.financeiro.pojo.Usuario;
 import br.com.financeiro.rn.UsuarioRN;
 import java.util.List;
+import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -113,6 +114,16 @@ public class UsuarioBean {
         return this.lista;
     }
   
+    public String atribuiPermissao(Usuario usuario , String permissao) {
+        this.usuario = usuario;
+        Set<String> permissoes = this.usuario.getPermissao();
+        if(permissoes.contains(permissao)){
+            permissoes.remove(permissao);
+        }else{
+            permissoes.add(permissao);
+        }
+        return null;
+    }
     
    
 }

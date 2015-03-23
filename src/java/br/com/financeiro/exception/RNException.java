@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package br.com.financeiro.exception;
+package java.br.com.financeiro.exception;
 
 
 /**
