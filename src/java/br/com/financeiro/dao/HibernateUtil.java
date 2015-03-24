@@ -5,12 +5,8 @@
  */
 package br.com.financeiro.dao;
 
-
-import org.hibernate.*;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.SessionFactory;
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -26,16 +22,10 @@ public class HibernateUtil {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
             // config file.
-            Configuration configuration = new Configuration().configure();
-            StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-            sessionFactory = configuration.buildSessionFactory(builder.build());
-            if (sessionFactory == null){
-                System.err.println("SESSION FACTORY ESTA NULL");
-            }else{
-                System.err.println("DEEEU CERTOOO PORRA!!");
-            }
+            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
         } catch (Throwable ex) {
-            System.err.println("DEU MERDA NA HORA DE CRIAR A SESSIONFACTORY" + ex);
+            // Log the exception. 
+            System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }

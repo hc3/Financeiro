@@ -5,7 +5,7 @@
 
 	<bean id="financeiroDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName">
-			<value>jdbc/FinanceiroDB</value>
+			<value>java:comp/env/jdbc/FinanceiroDB</value>
 		</property>
-	</bean> 	
+	</bean> 
 </beans>

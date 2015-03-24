@@ -34,6 +34,10 @@ public class UsuarioBean {
    private List<Usuario> lista;
    private String destinoSalvar;
    
+    public UsuarioBean(){
+        
+    }
+   
     public Usuario getUsuario() {
         return usuario;
     }
