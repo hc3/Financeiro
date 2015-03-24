@@ -5,11 +5,12 @@
       xmlns:sec="http://www.springframework.org/security/facelets/tags">
     <h:head>
         <title>Principal</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/> 
     </h:head>
     <h:body>
         <h1>Gerenciador Financeiro Pessoal</h1>
         
-        UsuÃ¡rio logado #{request.remoteUser}
+        Usuário logado :  #{request.remoteUser}
         <br/>
         <h:form>
             <sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
@@ -19,7 +20,7 @@
             </sec:ifAnyGranted>
             
             <a onclick="document.location='#{request.contextPath}/j_spring_security_logout'" title="Sair" >
-                <h:graphicImage library="images" name="logout16.png" />
+                <h:graphicImage library="imagens" name="logout16.png" />
             </a>
         </h:form>
     </h:body>
