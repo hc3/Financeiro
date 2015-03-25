@@ -23,4 +23,10 @@ public class DAOFactory {
         return usuarioDAO;
     }
     
+    public static ContaDAO criarContaDAO(){
+        ContaDAOHibernate contaDAO = new ContaDAOHibernate();
+        contaDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return contaDAO;
+    }
+    
 }

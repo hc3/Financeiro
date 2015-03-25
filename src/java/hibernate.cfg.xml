@@ -9,5 +9,6 @@
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
     <mapping class="br.com.financeiro.pojo.Usuario"/>
+    <mapping class="br.com.financeiro.pojo.Conta"/>
   </session-factory>
 </hibernate-configuration>
