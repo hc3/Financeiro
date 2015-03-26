@@ -8,6 +8,7 @@ package br.com.financeiro.dao;
 
 import br.com.financeiro.pojo.Conta;
 import br.com.financeiro.pojo.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;

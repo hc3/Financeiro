@@ -55,6 +55,7 @@ public class Usuario implements Serializable {
     )
     private Set<String> permissao = new HashSet<String>();
     
+    
     public Usuario(){
 
     }

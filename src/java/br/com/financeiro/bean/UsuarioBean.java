@@ -6,7 +6,9 @@
 
 package br.com.financeiro.bean;
 
+import br.com.financeiro.pojo.Conta;
 import br.com.financeiro.pojo.Usuario;
+import br.com.financeiro.rn.ContaRN;
 import br.com.financeiro.rn.UsuarioRN;
 import java.util.List;
 import java.util.Set;
@@ -33,6 +35,7 @@ public class UsuarioBean {
    private String confirmaSenha;
    private List<Usuario> lista;
    private String destinoSalvar;
+   private Conta conta = new Conta();
    
     public UsuarioBean(){
         
@@ -88,7 +91,15 @@ public class UsuarioBean {
         
         UsuarioRN usuarioRN = new UsuarioRN();
         usuarioRN.salvar(this.usuario);
-       
+         
+        if(this.conta.getDescricao() != null) {
+            this.conta.setUsuario(this.usuario);
+            this.conta.setFavorita(true);
+            ContaRN contaRN = new ContaRN();
+            contaRN.salvar(this.conta);
+        }
+        
+        
         return this.destinoSalvar;
     }
     
@@ -127,6 +138,14 @@ public class UsuarioBean {
             permissoes.add(permissao);
         }
         return null;
+    }
+
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
     }
     
    
