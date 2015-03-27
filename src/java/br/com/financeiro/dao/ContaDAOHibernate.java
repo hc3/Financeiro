@@ -8,7 +8,7 @@ package br.com.financeiro.dao;
 
 import br.com.financeiro.pojo.Conta;
 import br.com.financeiro.pojo.Usuario;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -30,10 +30,6 @@ public class ContaDAOHibernate implements ContaDAO{
     public void setSession(Session session) {
         this.session = session;
     }
-    
-    public ContaDAOHibernate(){
-
-    }
 
     @Override
     public void salvar(Conta conta) {
@@ -52,9 +48,11 @@ public class ContaDAOHibernate implements ContaDAO{
 
     @Override
     public List<Conta> listar(Usuario usuario) {
+        
         Criteria criteria = this.session.createCriteria(Conta.class);
-        criteria.add(Restrictions.eq("usuario" , usuario));
-        return criteria.list();
+        criteria.add(Restrictions.eq("usuario", usuario));
+        
+        return criteria.list();        
     }
 
     @Override

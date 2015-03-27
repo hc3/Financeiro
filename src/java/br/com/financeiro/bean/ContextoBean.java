@@ -25,7 +25,7 @@ import javax.faces.event.ValueChangeEvent;
  * @email eliel.floyd@bol.com.br
  *
  */
-@ManagedBean(name = "contextBean")
+@ManagedBean(name = "contextoBean")
 @SessionScoped
 public class ContextoBean {
 
@@ -47,26 +47,29 @@ public class ContextoBean {
        return usuarioLogado;
    }
    
+  
+   
    public void setUsuarioLogado(Usuario usuario) {
        this.usuarioLogado = usuario;
    }
    
-   public Conta getContaAtiva() {
+   
+     public Conta getContaAtiva() {
        if(this.contaAtiva == null){
            Usuario usuario = this.getUsuarioLogado();
            ContaRN contaRN = new ContaRN();
            this.contaAtiva = contaRN.buscarFavorita(usuario);
            if ( this.contaAtiva == null) {
                List<Conta> contas = contaRN.listar(usuario);
-               if(contas != null) {
-               for (Conta conta : contas) {
-                   this.contaAtiva = conta;
-                   break;
-                }
-              }
+              if(contas != null) {
+                    for (Conta conta : contas) {
+                        this.contaAtiva = conta;
+                        break;
+                   }
+               }
            }
        }
-       return contaAtiva;
+       return this.contaAtiva;
    }
    
    public void setContaAtiva(ValueChangeEvent event) {

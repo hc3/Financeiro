@@ -9,7 +9,7 @@ package br.com.financeiro.bean;
 import br.com.financeiro.pojo.Conta;
 import br.com.financeiro.rn.ContaRN;
 import br.com.financeiro.util.ContextoUtil;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -26,7 +26,7 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class ContaBean {
     private Conta selecionada = new Conta();
-    private List<Conta> lista = new LinkedList<Conta>();
+    private List<Conta> lista = null;
     
     public ContaBean(){
         
@@ -69,7 +69,6 @@ public class ContaBean {
     public List<Conta> getLista() {
         if(this.lista == null) {
             ContextoBean contextoBean = ContextoUtil.getContextBean();
-            
             ContaRN contaRN = new ContaRN();
             this.lista = contaRN.listar(contextoBean.getUsuarioLogado());
         }
@@ -81,7 +80,6 @@ public class ContaBean {
     public void setLista(List<Conta> lista) {
         this.lista = lista;
     }
-    
-    
+        
     
 }

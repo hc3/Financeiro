@@ -33,7 +33,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name="conta_bancaria")
 public class Conta implements Serializable {
-    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="cod_conta")
@@ -48,7 +48,6 @@ public class Conta implements Serializable {
     private String descricao;
     
     @Column(name="dat_cadastro" , nullable = false , updatable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCadastro;
     
     @Column(name="saldo_inicial")
