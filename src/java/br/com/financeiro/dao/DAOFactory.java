@@ -29,4 +29,10 @@ public class DAOFactory {
         return contaDAO;
     }
     
+    public static CategoriaDAO criarCategoria(){
+        CategoriaDAOHibernate categoriaDAO = new CategoriaDAOHibernate();
+        categoriaDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return categoriaDAO;
+    }
+    
 }

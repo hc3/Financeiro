@@ -43,12 +43,17 @@ public class UsuarioRN {
         if(codigo == null || codigo == 0) {
             usuario.getPermissao().add("ROLE_USUARIO");
             this.usuarioDAO.salvar(usuario);
+            
+            CategoriaRN categoriaRN = new CategoriaRN();
+            categoriaRN.salvaEstruturaPadrao(usuario);
         }else {
             this.usuarioDAO.atualizar(usuario);
         }
     }
     
     public void excluir(Usuario usuario) {
+        CategoriaRN categoriaRN = new CategoriaRN();
+        categoriaRN.excluir(usuario);
         this.usuarioDAO.excluir(usuario);
     }
     

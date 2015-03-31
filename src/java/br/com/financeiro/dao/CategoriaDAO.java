@@ -6,6 +6,10 @@
 
 package br.com.financeiro.dao;
 
+import br.com.financeiro.pojo.Categoria;
+import br.com.financeiro.pojo.Usuario;
+import java.util.List;
+
 
 /**
  *
@@ -15,10 +19,10 @@ package br.com.financeiro.dao;
  *
  */
 
-public class CategoriaDAO {
-    private static final long serialVersionUID = 1L;
-
-    public CategoriaDAO(){
-
-    }
+public interface CategoriaDAO {
+    public Categoria salvar(Categoria categoria);
+    public void excluir(Categoria categoria);
+    public Categoria carregar(Integer categoria);
+    public List<Categoria> listar(Usuario usuario);
+    
 }

@@ -10,5 +10,6 @@
     <property name="format_sql">true</property>
     <mapping class="br.com.financeiro.pojo.Usuario"/>
     <mapping class="br.com.financeiro.pojo.Conta"/>
+    <mapping class="br.com.financeiro.pojo.Categoria"/>
   </session-factory>
 </hibernate-configuration>
