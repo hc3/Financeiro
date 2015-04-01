@@ -35,4 +35,10 @@ public class DAOFactory {
         return categoriaDAO;
     }
     
+    public static LancamentoDAO criarLancamento(){
+        LancamentoDAOHibernate lancamentoDAO = new LancamentoDAOHibernate();
+        lancamentoDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return lancamentoDAO;
+    }
+    
 }

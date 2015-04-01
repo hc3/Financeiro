@@ -15,13 +15,13 @@
                 <h:panelGrid columns="2" cellpadding="5">
                     <h:panelGroup>
                         <h:form>
-                            <p:commandButton value="Novo" action="#{categoriaBean.novo}" update=":edicao"/>
+                            <p:commandButton value="Novo" action="#{categoriaBean.novo}" update="edicao"/>
                         </h:form> 
                         <br/>
                         <h:form id="arvore">
                             <p:tree value="#{categoriaBean.categoriasTree}" var="node" 
                                     dynamic="false" selectionMode="single" nodeSelectListener="#{categoriaBean.selecionar}"
-                                    update=":edicao" expandAnim="FADE_IN" collapseAnim="FADE_OUT">
+                                    update="edicao" expandAnim="FADE_IN" collapseAnim="FADE_OUT">
                                 <p:treeNode>
                                     <h:outputText value="#{node.descricao}" />
                                 </p:treeNode>
@@ -45,11 +45,11 @@
                                 <h:inputText value="#{categoriaBean.editada.descricao}" />
                                 <h:outputText />
                                 <h:panelGroup>
-                                    <p:commandButton value="Salvar" action="#{categoriaBean.salvar}" update=":edicao, :arvore" />
-                                    <p:commandButton value="Excluir" action="#{categoriaBean.excluir}" update=":edicao, :arvore" />
+                                    <p:commandButton value="Salvar" action="#{categoriaBean.salvar}" update="edicao, arvore" />
+                                    <p:commandButton value="Excluir" action="#{categoriaBean.excluir}" update="edicao, arvore" />
                                 </h:panelGroup>
                                 <h:outputText />
-                                <p:commandButton value="Nova Subcategoria" action="#{categoriaBean.novo}" update=":edicao"/>
+                                <p:commandButton value="Nova Subcategoria" action="#{categoriaBean.novo}" update="edicao"/>
                             </h:panelGrid>
                         </h:form>
                    
