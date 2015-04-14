@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+
 package br.com.financeiro.bean;
 
 import br.com.financeiro.pojo.Categoria;
