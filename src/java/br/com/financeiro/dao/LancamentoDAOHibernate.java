@@ -34,18 +34,22 @@ public class LancamentoDAOHibernate implements LancamentoDAO{
         this.session = session;
     }
     
+    @Override
     public void salvar(Lancamento lancamento) {
         this.session.saveOrUpdate(lancamento);
     }
     
+    @Override
     public void excluir(Lancamento lancamento){
         this.session.delete(lancamento);
     }
     
+    @Override
     public Lancamento carregar(Integer lancamento) {
         return (Lancamento) this.session.get(Lancamento.class, lancamento);
     }
     
+    @Override
     public List<Lancamento> listar(Conta conta , Date dataInicio , Date dataFim) {
         Criteria criteria = this.session.createCriteria(Lancamento.class);
         
@@ -62,11 +66,12 @@ public class LancamentoDAOHibernate implements LancamentoDAO{
         return criteria.list();
     }
     
+    @Override
     public float saldo(Conta conta , Date data ){
         StringBuffer sql = new StringBuffer();
         
         sql.append("select sum(l.valor * c.fator)");
-        sql.append("from LANCAMENTO 1, ");
+        sql.append("from LANCAMENTO l,");
         sql.append("  CATEGORIA c");
         sql.append(" where l.categoria = c.codigo");
         sql.append("  and l.conta = :conta");
