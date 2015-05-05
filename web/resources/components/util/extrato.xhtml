@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <!-- INTERFACE -->
+    <composite:interface>
+        <composite:attribute name="width" required="true" />
+        <composite:attribute name="heigth" required="true" />
+        <composite:attribute name="lista" type="java.util.List" required="true" />
+        <composite:attribute name="saldos" type="java.util.List" />
+        <composite:attribute name="larguraDescricao" type="int" required="true"/>
+        <composite:attribute name="botaoExclusao" type="java.lang.Boolean" default="true"/>
+        <composite:attribute name="botaoEdicao" type="java.lang.Boolan" default="true"/>
+        <composite:attribute name="colunaSaldo" type="java.lang.Boolean" default="true"/>
+    </composite:interface>
+    
+    <!-- IMPLEMENTATION -->
+    <composite:implementation>
+        
+            <p:column style="width: 15px" rendered="#{cc.attrs.botaoEdicao}">
+                <p:commandLink action="#{lancamentoBean.editar}" update="edicao">
+                    <h:graphicImage library="imagens" name="editar16.png"/>
+                    <f:setPropertyActionListener target="#{lancamentoBean.editado}" value="#{lancamento}" />
+                </p:commandLink>
+            </p:column>
+            
+            <p:column style="width: 15px" rendered="#{cc.attrs.botaoExclusao}">
+                <p:commandLink action="#{lancamentoBean.excluir}" update="listagem"
+                               onclick="if (!confirm('Confirma a exclusão do lançamento #{lancamento.descricao}?')) return false;">
+                    <h:graphicImage library="imagens" name="excluir16.png"/>
+                    <f:setPropertyActionListener target="#{lancamentoBean.editado}" value="#{lancamento}"/>
+                </p:commandLink>
+            </p:column>
+            
+            <p:column style="width: 70">
+                <f:facet name="header">Data</f:facet>
+                <h:outputText value="#{lancamento.data}">
+                    <f:convertDateTime dateStyle="medium" />
+                </h:outputText>
+            </p:column>
+            
+        <p:column style="width: #{cc.attrs.larguraDescricao}">
+                <f:facet name="header">Descrição</f:facet>
+                <h:outputText value="#{lancamento.descricao}" />
+            </p:column>
+            
+            <p:column style="width: 60px">
+                <f:facet name="header">Valor</f:facet>
+                    <h:outputText style="color: #{lancamento.categoria.fator gt 0 ? 'green' : 'red'}; text-align: right;
+                              display: block; value=#{cc.attrs.saldos[index]}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+            </p:column>
+            
+        
+    </composite:implementation>
+</html>
+
