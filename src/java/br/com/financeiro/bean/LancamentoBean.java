@@ -37,6 +37,8 @@ public class LancamentoBean {
     private List<Double> saldos = new ArrayList<Double>();
     private float saldoGeral;
     private Lancamento editado = new Lancamento();
+    private List<Lancamento> listaAteHoje;
+    private List<Lancamento> listaFuturos;
     
     public LancamentoBean(){
         this.novo();
@@ -70,7 +72,7 @@ public class LancamentoBean {
         this.lista = null;
     }
     
-    public List<Lancamento> getList(){
+    public List<Lancamento> getLista(){
         if(this.lista == null) {
             ContextoBean contextoBean = ContextoUtil.getContextBean();
             Conta conta = contextoBean.getContaAtiva();
@@ -96,10 +98,34 @@ public class LancamentoBean {
         }
         return this.lista;
     }
-
-    public List<Lancamento> getLista() {
-        return lista;
+    
+    public List<Lancamento> getListaAteHoje(){
+        if(this.listaAteHoje == null) {
+            ContextoBean contextoBean = ContextoUtil.getContextBean();
+            Conta conta = contextoBean.getContaAtiva();
+            
+            Calendar hoje = new GregorianCalendar();
+            
+            LancamentoRN lancamentoRN = new LancamentoRN();
+            this.listaAteHoje = lancamentoRN.listar(conta, null,hoje.getTime());
+        }
+        return this.listaAteHoje;
     }
+    
+    public List<Lancamento> getListaFururos(){
+        if(this.listaFuturos == null) {
+            ContextoBean contextoBean = ContextoUtil.getContextBean();
+            Conta conta = contextoBean.getContaAtiva();
+            
+            Calendar amanha = new GregorianCalendar();
+            amanha.add(Calendar.DAY_OF_MONTH, 1);
+            
+            LancamentoRN lancamentoRN = new LancamentoRN();
+            this.listaFuturos = lancamentoRN.listar(conta,amanha.getTime(),null);
+        }
+        return listaFuturos;
+    }
+    
 
     public void setLista(List<Lancamento> lista) {
         this.lista = lista;
